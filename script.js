@@ -22,7 +22,7 @@ const scrollTop = scrollContainer.scrollTop;
 const maxScroll = scrollContainer.scrollHeight - scrollContainer.clientHeight;
 
 if (scrollTop === 0) {
-
+// 最上部：下だけ表示
 scrollUp.style.display = 'none';
 scrollDown.style.display = 'block';
 } else if (scrollTop >= maxScroll - 1) {
