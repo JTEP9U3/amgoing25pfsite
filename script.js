@@ -35,6 +35,9 @@ scrollContainer.addEventListener('scroll', () => {
 });
 
 window.addEventListener('load', () => {
+  scrollUp.style.display = 'none';
+  scrollDown.style.display = 'block';
   scrollContainer.dispatchEvent(new Event('scroll'));
 });
+
 
