@@ -88,14 +88,31 @@ color: #00ffaa;
 }
 
 .scroll-indicator { /*スクロールインジケータ*/
-  position: fixed; /*画面に対して配置固定*/
-  bottom: 20px; /*画面下から20ピクセルの位置に配置*/
-  left: 50%; /*画面の横幅の中央に配置*/
-  transform: translateX(-50%); /*横方向に自身の幅の50%だけ左に移動させ、正確に中央に配置*/
-  font-size: 24px; /*フォントサイズを24ピクセルに設定*/
-  color: #888; /*文字の色、設定値はグレー*/
-  animation: bounce 2s infinite; /*下記の「bounce」弾むようなアニメーションを2秒周期で無限に繰り返す*/
-  z-index: 999; /*背景に隠れないように前面に表示*/
+position: fixed; /*画面に対して配置固定*/
+left: 50%; /*画面の横幅の中央に配置*/
+transform: translateX(-50%);/*横方向に自身の幅の50%だけ左に移動させ、正確に中央に配置*/
+color: #888;/*文字の色、設定値はグレー*/
+font-size: 24px; /*フォントサイズを24ピクセルに設定*/
+z-index: 999; /*背景に隠れないように前面に表示*/
+pointer-events: none;
+}
+
+.arrow {
+display: block;
+text-align: center;
+animation: bounce 2s infinite; /*下記の「bounce」弾むようなアニメーションを2秒周期で無限に繰り返す*/
+}
+
+.arrow.up {/*スクロールインジケータ「上」*/
+position: absolute;
+top: 20px; /*画面上から20ピクセルの位置に配置*/
+display: none;
+}
+
+.arrow.down {/*スクロールインジケータ「下」*/
+position: absolute;
+bottom: 20px; /*画面下から20ピクセルの位置に配置*/
+display: none;
 }
 
 @keyframes bounce { /*アニメーション「bounce」*/
