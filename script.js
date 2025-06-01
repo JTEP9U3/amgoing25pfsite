@@ -19,25 +19,22 @@ const observer = new IntersectionObserver(entries => {
 sections.forEach(section => observer.observe(section));
 
 scrollContainer.addEventListener('scroll', () => {
-const scrollTop = scrollContainer.scrollTop;
-const maxScroll = scrollContainer.scrollHeight - scrollContainer.clientHeight;
+  const scrollTop = scrollContainer.scrollTop;
+  const maxScroll = scrollContainer.scrollHeight - scrollContainer.clientHeight;
 
-if (scrollTop === 0) {
-// 最上部：下だけ表示
-scrollUp.style.display = 'none';
-scrollDown.style.display = 'block';
-} else if (scrollTop >= maxScroll - 1) {
-// 最下部：上だけ表示
-scrollUp.style.display = 'block';
-scrollDown.style.display = 'none';
-} else {
-// 中間：上下表示
-scrollUp.style.display = 'block';
-scrollDown.style.display = 'block';
-}
+  if (scrollTop <= 1) {
+    scrollUp.style.display = 'none';
+    scrollDown.style.display = 'block';
+  } else if (scrollTop >= maxScroll - 1) {
+    scrollUp.style.display = 'block';
+    scrollDown.style.display = 'none';
+  } else {
+    scrollUp.style.display = 'block';
+    scrollDown.style.display = 'block';
+  }
 });
 
-// ページ読み込み時にも初期状態を設定
 window.addEventListener('load', () => {
-scrollContainer.dispatchEvent(new Event('scroll'));
+  scrollContainer.dispatchEvent(new Event('scroll'));
 });
+
