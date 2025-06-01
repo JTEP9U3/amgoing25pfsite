@@ -97,22 +97,19 @@ z-index: 999; /*背景に隠れないように前面に表示*/
 pointer-events: none;
 }
 
-.arrow {
-display: block;
-text-align: center;
-animation: bounce 2s infinite; /*下記の「bounce」弾むようなアニメーションを2秒周期で無限に繰り返す*/
+.arrow.up, .arrow.down {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999;
+  animation: bounce 2s infinite;
+  display: none;
 }
-
-.arrow.up {/*スクロールインジケータ「上」*/
-position: absolute;
-top: 20px; /*画面上から20ピクセルの位置に配置*/
-display: none;
+.arrow.up {
+  top: 20px;
 }
-
-.arrow.down {/*スクロールインジケータ「下」*/
-position: absolute;
-bottom: 20px; /*画面下から20ピクセルの位置に配置*/
-display: none;
+.arrow.down {
+  bottom: 20px;
 }
 
 @keyframes bounce { /*アニメーション「bounce」*/
