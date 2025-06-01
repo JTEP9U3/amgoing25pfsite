@@ -1,4 +1,7 @@
 const sections = document.querySelectorAll('.tile');
+const scrollContainer = document.querySelector('.scroll-container');
+const scrollUp = document.querySelector('.arrow.up');
+const scrollDown = document.querySelector('.arrow.down');
 
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
@@ -13,9 +16,7 @@ const observer = new IntersectionObserver(entries => {
   threshold: 0.6
 });
 
-const scrollContainer = document.querySelector('.scroll-container');
-const scrollUp = document.querySelector('.arrow.up');
-const scrollDown = document.querySelector('.arrow.down');
+sections.forEach(section => observer.observe(section));
 
 scrollContainer.addEventListener('scroll', () => {
 const scrollTop = scrollContainer.scrollTop;
@@ -40,5 +41,3 @@ scrollDown.style.display = 'block';
 window.addEventListener('load', () => {
 scrollContainer.dispatchEvent(new Event('scroll'));
 });
-
-sections.forEach(section => observer.observe(section));
