@@ -116,8 +116,8 @@ display: none;
 }
 
 @keyframes bounce { /*アニメーション「bounce」*/
-  0%, 100% { transform: translate(-50%, 0); } /*アニメーションの開始と終了時点で同じ位置に戻る*/
-  50% { transform: translate(-50%, 8px); } /*アニメーションの中間点で、要素は縦に8ピクセル下に移動*/
+  0%, 100% { transform: translateY(0); } /*アニメーションの開始と終了時点で同じ位置に戻る*/
+  50% { transform: translateY(6px); } /*アニメーションの中間点で、要素は縦に8ピクセル下に移動*/
 }
 
 a { /*アンカーリンク用*/
