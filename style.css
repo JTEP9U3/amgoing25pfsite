@@ -1,0 +1,78 @@
+* { /*スタイルリセットとレイアウト調整、異なるブラウザ間で差異出ないように設定*/
+  margin: 0; /* marginリセット、外側の余白を0に設定*/
+  padding: 0; /*paddingリセット、内側の余白を0に設定*/
+  box-sizing: border-box; /*レイアウト調整用、設定された高さと幅に合わせてpaddingなどを計算*/
+}
+
+body, html { /*基本スタイル設定*/
+  height: 100%; /*ページの高さを100%*/
+  overflow: hidden; /*ページ全体のスクロールを無効化、画面外にはみ出した部位を隠す*/
+  font-family: 'Helvetica Neue', sans-serif; /*使用するフォントは「Helvetica Neue」を優先、不可なら「sans-serif」*/
+}
+
+.scroll-container { /*スクロール動作の設定*/
+  scroll-snap-type: y mandatory; /*「y」縦方向のスクロールスナップ、特定位置でスクロールの自動停止*/
+  overflow-y: scroll; /*縦方向のスクロールバーを表示*/
+  height: 100vh; /*高さを「100vh」に設定*/
+  scroll-behavior: smooth; /*スクロール動作をアニメーションに*/
+}
+
+.tile { /*コンテンツブロック用クラス*/
+  scroll-snap-align: start; /*スクロールスナップの位置をブロックの先頭に設定*/
+  height: 100vh; /*コンテンツブロックの高さを画面全体に設定*/
+  display: flex; /*コンテンツ配置の制御用にフレックスボックスレイアウトを適用*/
+  justify-content: center; /*コンテンツを水平方向の中央に配置*/
+  align-items: center; /*コンテンツを垂直方向の中央に配置*/
+  padding: 40px; /*内側の余白設定*/
+  background: #111; /*背景の色、設定値はダークグレー*/
+  color: #aaa; /*文字の色、設定値は薄いグレー*/
+  transition: all 0.6s ease; /*ホバーなどの動作に0.6秒のイージングアニメーションを適用*/
+  position: relative; /*要素の位置を相対化*/
+  opacity: 0.4; /*要素の不透明度を40%に*/
+  filter: grayscale(40%); /*要素の色彩を40%のモノクロ風に変換*/
+}
+
+.tile.active { /*現在表示しているコンテンツブロックの強調表示用*/
+  opacity: 1; /*透明度を不透明（100%）に設定、コンテンツの可視化*/
+  filter: grayscale(0%); /*フィルターの白黒化の無効、カラー表示に戻す*/
+  color: #fff; /*文字の色、設定値は白*/
+}
+
+.content { /*コンテンツブロックのレイアウトとアニメーション設定*/
+  max-width: 700px; /*コンテンツの最大幅を700ピクセルに制限*/
+  text-align: center; /*コンテンツを中央揃えに*/
+  transform: translateY(80px); /*コンテンツをY軸方向に80ピクセル下に移動*/
+  opacity: 0; /*透明度を0に設定し、コンテンツを非表示に*/
+  transition: opacity 0.9s ease-out, transform 0.9s cubic-bezier(0.2, 0.8, 0.3, 1);
+  /*0.9秒かけてフェードイン、0.9秒かつカスタムベジェ曲線で滑らかに位置を変化、スクロールのアニメーション用*/
+}
+
+.tile.active .content { /*コンテンツがが目に表示される際のスクロールアニメーション*/
+  transform: translateY(0); /*下から上にスライドして元の位置に戻す*/
+  opacity: 1; /*透明度を不透明（100%）に設定、コンテンツの可視化*/
+}
+
+.scroll-indicator { /*スクロールインジケータ*/
+  position: fixed; /*画面に対して配置固定*/
+  bottom: 20px; /*画面下から20ピクセルの位置に配置*/
+  left: 50%; /*画面の横幅の中央に配置*/
+  transform: translateX(-50%); /*横方向に自身の幅の50%だけ左に移動させ、正確に中央に配置*/
+  font-size: 24px; /*フォントサイズを24ピクセルに設定*/
+  color: #888; /*文字の色、設定値はグレー*/
+  animation: bounce 2s infinite; /*下記の「bounce」弾むようなアニメーションを2秒周期で無限に繰り返す*/
+  z-index: 999; /*背景に隠れないように前面に表示*/
+}
+
+@keyframes bounce { /*アニメーション「bounce」*/
+  0%, 100% { transform: translate(-50%, 0); } /*アニメーションの開始と終了時点で同じ位置に戻る*/
+  50% { transform: translate(-50%, 8px); } /*アニメーションの中間点で、要素は縦に8ピクセル下に移動*/
+}
+
+a { /*アンカーリンク用*/
+  color: #00aaff; /*文字の色、設定値は青色*/
+  text-decoration: none; /*リンクの下線や打ち消し線を消去*/
+}
+
+a:hover { /*アンカーリンク用「カーソルが乗った際の動作」*/
+  text-decoration: underline; /*リンクに下線を付ける*/
+}
