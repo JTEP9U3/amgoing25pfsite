@@ -2,21 +2,36 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ハイローゲーム</title>
-  <script src="https://cjrtnc.leaningtech.com/cheerpj/3.0/loader.js"></script>
+  <!-- CheerpJランタイムのCDN -->
+  <script src="https://cjrtnc.leaningtech.com/4.1/loader.js"></script>
+  <style>
+    body {
+      background-color: #f5f5f5;
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      padding: 2rem;
+    }
+    #java-container {
+      width: 480px;
+      height: 540px;
+      margin: 0 auto;
+      border: 2px solid #aaa;
+      background-color: white;
+    }
+  </style>
 </head>
 <body>
   <h1>ハイローゲーム</h1>
-  <div id="cheerpj-container" style="width: 450px; height: 500px;"></div>
-  
-  <script>
-    // cheerpjInit は最初に呼び出す
-    cheerpjInit();
 
-    // JARファイルをiframeにロード
-    cheerpjRunJar("CardImageHighLow.jar", {
-      canvasId: "cheerpj-container"
-    });
+  <div id="java-container"></div>
+
+  <script>
+    // CheerpJを初期化して、JARファイルを埋め込む
+    cheerpjInit();
+    　cjLoadJar("CardImageHighLow.jar", function () {
+            cjRunMain("project.CardImageHighLow", []);
   </script>
 </body>
 </html>
